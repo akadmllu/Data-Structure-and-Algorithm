@@ -1,6 +1,6 @@
 import java.util.Stack;;
 
-public class EntryPoint {
+public class BalanceParentheses {
 	public static char[][] TOKEN = {{'[',']'},{'(',')'},{'{','}'}};
 
 	private static boolean isOpenTerm(char c) {

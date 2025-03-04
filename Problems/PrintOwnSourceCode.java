@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PrintSource {
+public class PrintOwnSourceCode {
 	private static FileInputStream objFileInputStream = null;
 	private static BufferedReader objBufferedReader = null;
 	public static void main(String[] args) {
 		try {
-			objFileInputStream = new FileInputStream("./src/PrintSource.java");
+			objFileInputStream = new FileInputStream("./src/PrintOwnSourceCode.java");
 			objBufferedReader = new BufferedReader(new InputStreamReader(objFileInputStream));
 			String sLine = null;
 			while((sLine = objBufferedReader.readLine()) != null) {

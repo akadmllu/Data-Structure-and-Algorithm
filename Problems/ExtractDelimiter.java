@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class EntryPoint {
+public class ExtractDelimiter {
 	public static String[][] result = null;
 	public static void main(String[] args) {
 		String[] arrRow = {"HCC:46~DC:12","HCC:50~DC:1","pqr","","","PC:26~DC:45","xyz","","amit"};
