@@ -1,4 +1,4 @@
-package com.algorithm.graph;
+package com.problem.binarysearch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class AutoCompleteSystem 
+public class LeetCode_642_AutoCompleteSystem 
 {
 	class TrieNode
 	{
@@ -53,7 +53,7 @@ public class AutoCompleteSystem
 	
 	private TrieNode root;
 	private StringBuilder currentQuery;
-	public AutoCompleteSystem(String[] sentences, int[] times)
+	public LeetCode_642_AutoCompleteSystem(String[] sentences, int[] times)
 	{
 		this.root = new TrieNode();
 		currentQuery = new StringBuilder();
@@ -119,7 +119,7 @@ public class AutoCompleteSystem
 	{
 		String[] sentences = {"i love you", "island","ironman", "i love geeksforgeeks", "ice-cream"};
 		int[] times = {5,3,2,2,6};
-		AutoCompleteSystem obj = new AutoCompleteSystem(sentences, times);
+		LeetCode_642_AutoCompleteSystem obj = new LeetCode_642_AutoCompleteSystem(sentences, times);
 		List suggestion = obj.input('i');
 		System.out.println(suggestion);
 		suggestion = obj.input('a');
