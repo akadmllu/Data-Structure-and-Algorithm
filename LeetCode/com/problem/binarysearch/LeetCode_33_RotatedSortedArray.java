@@ -54,7 +54,7 @@ public class LeetCode_33_RotatedSortedArray
 			if(nums[start] <= nums[mid])
 			{
 				// Target is within the sorted left half
-				if(isInRange(target,nums[start], nums[mid]))
+				if(nums[start] <= target && target < nums[mid])
 					end = mid - 1;
 				// Otherwise, search in the right half
 				else
@@ -64,7 +64,7 @@ public class LeetCode_33_RotatedSortedArray
 			else
 			{
 				// Target is within the sorted right half
-				if(isInRange(target,nums[mid], nums[end]))
+				if(nums[mid] < target && target <= nums[end])
 					start = mid + 1;
 				// Otherwise, search in the left half
 				else
@@ -75,15 +75,9 @@ public class LeetCode_33_RotatedSortedArray
 		return -1;
 	}
 	
-	// Helper method to check if target lies in range [start, end]
-    private static boolean isInRange(int target, int start, int end) 
-    {
-        return target >= start && target <= end;
-    }
-	
 	public static void main(String[] args) 
 	{
-		int[] nums = { 4, 5, 6, 7, 0, 1, 2 };
+		int[] nums = { 1,0,1,1,1 };
 		int target = 0;
 
 		int index = search(nums, target);
