@@ -1,4 +1,4 @@
-package com.problem.binarysearch;
+package com.problem.string;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -120,7 +120,7 @@ public class LeetCode_642_AutoCompleteSystem
 		String[] sentences = {"i love you", "island","ironman", "i love geeksforgeeks", "ice-cream"};
 		int[] times = {5,3,2,2,6};
 		LeetCode_642_AutoCompleteSystem obj = new LeetCode_642_AutoCompleteSystem(sentences, times);
-		List suggestion = obj.input('i');
+		List<String> suggestion = obj.input('i');
 		System.out.println(suggestion);
 		suggestion = obj.input('a');
 		System.out.println(suggestion);

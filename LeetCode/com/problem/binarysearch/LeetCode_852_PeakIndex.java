@@ -21,37 +21,45 @@ package com.problem.binarysearch;
  * Output:  1
  */
 
-public class LeetCode_852_PeakIndex {
+public class LeetCode_852_PeakIndex 
+{
+	private static boolean isPeak(int[] arr, int mid) 
+	{
+		// 4 < 5 > 3
+		return arr[mid - 1] < arr[mid] && arr[mid] > arr[mid + 1] ;
+	}
 
 	private static int peakIndexInMountainArray(int[] arr) 
 	{
 		int start = 1;
     	int mid = 0;
     	int end = arr.length - 2;
-    	while(start <= end)
+    	while(start < end)
     	{
-    		// Skip duplicates at the edges
-            while (start < end && arr[start] == arr[end]) 
-            {
-                start++;
-            }
-            
     		mid = start + (end - start) / 2;
     		
-    		if(arr[mid - 1] < arr[mid] && arr[mid] > arr[mid + 1])
+    		if(isPeak(arr, mid))
     			return mid;
-
-    		else if(arr[mid - 1] < arr[mid])
+    		
+    		//increasing part of mountain
+    		if(arr[mid] < arr[mid + 1])
     			start = mid + 1;
+    		//decreasing part of mountain
+    		else if(arr[mid] > arr[mid + 1])
+    			end = mid;
     		else
-    			end = mid - 1;
+    		{
+    			//handle duplicates by skipping one element at a time
+    			if(arr[start] == arr[mid]) start++;
+    			if(arr[end] == arr[mid]) end--;
+    		}
     	}
-    	return -1;
+    	return start;
 	}
-	
+
 	public static void main(String[] args) 
 	{
-		int[] arr = {3,4,5,1};
+		int[] arr = { 1, 2, 3, 3, 4, 4, 5, 3, 3, 2, 2, 1 };
 		int index = peakIndexInMountainArray(arr);
 		System.out.println(" Index : " + index);
 	}

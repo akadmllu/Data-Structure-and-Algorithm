@@ -14,7 +14,8 @@ package com.problem.binarysearch;
  * 
  * MountainArray.get(k) returns the element of the array at index k (0-indexed).
  * MountainArray.length() returns the length of the array.
- * Submissions making more than 100 calls to MountainArray.get will be judged Wrong Answer. Also, any solutions that attempt to circumvent the judge will result in disqualification.
+ * Submissions making more than 100 calls to MountainArray.get will be judged Wrong Answer. Also, any solutions that attempt 
+ * to circumvent the judge will result in disqualification.
  *  
  * Example 1:
  * Input: mountainArr = [1,2,3,4,5,3,1], target = 3
@@ -62,14 +63,32 @@ public class LeetCode_1095_MountainArray {
 		int mid = 0;
 		int end = mountainArr.length() - 1;
 		while(start < end)
-		{
-			mid = start + (end - start) / 2;
-			if(mountainArr.get(mid) < mountainArr.get(mid + 1))
-				start = mid + 1;
-			else
-				end = mid;
-		}
-		return start;
+    	{
+    		mid = start + (end - start) / 2;
+    		
+    		if(isPeak(mountainArr, mid))
+    			return mid;
+    		
+    		//increasing part of mountain
+    		if( mountainArr.get(mid) <  mountainArr.get(mid + 1))
+    			start = mid + 1;
+    		//decreasing part of mountain
+    		else if( mountainArr.get(mid) >  mountainArr.get(mid + 1))
+    			end = mid;
+    		else
+    		{
+    			//handle duplicates by skipping one element at a time
+    			if(mountainArr.get(start) ==  mountainArr.get(mid)) start++;
+    			if(mountainArr.get(end) ==  mountainArr.get(mid)) end--;
+    		}
+    	}
+    	return start;
+	}
+	
+	private static boolean isPeak(MountainArray mountainArr, int mid) 
+	{
+		// 4 < 5 > 3
+		return mountainArr.get(mid - 1) < mountainArr.get(mid) && mountainArr.get(mid) > mountainArr.get(mid + 1) ;
 	}
 	
 	public static int findInMountainArray(int target, MountainArray mountainArr) {
@@ -78,14 +97,14 @@ public class LeetCode_1095_MountainArray {
 		if(firstTry != -1)
 			return firstTry;
 		
-        return orderAgnosticBinarySearch(mountainArr, target, peak, mountainArr.length() - 1);
+        return orderAgnosticBinarySearch(mountainArr, target, peak + 1, mountainArr.length() - 1);
     }
 
 	public static void main(String[] args) 
 	{
-		int[] arr = {1,2,3,4,5,3,1};
+		int[] arr = {1,1,2,3,4,5,3,1,1};
 		MountainArrayImpl mountainArr = new MountainArrayImpl(arr);
-		int target = 3;
+		int target = 5;
 
 		int index = findInMountainArray(target,mountainArr);
 		System.out.println(" Index : " + index);
